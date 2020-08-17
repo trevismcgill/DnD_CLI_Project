@@ -3,4 +3,3 @@
 require "./lib/environment"
 
 CliController.new.start
-#API.json_to_csv

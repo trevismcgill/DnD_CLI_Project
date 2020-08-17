@@ -1,9 +1,8 @@
-require "./lib/lor_project/version"
-require "./lib/lor_project/cli_controller"
-require "./lib/lor_project/api"
-require "./lib/lor_project/card"
-require "./lib/lor_project/deck"
-# require "./lib/lor_project/set1-en_us"
+require "./lib/DnD_Project/version"
+require "./lib/DnD_Project/cli_controller"
+require "./lib/DnD_Project/api"
+require "./lib/DnD_Project/character_klass"
+
 
 # module LorProject
 #   class Error < StandardError; end
