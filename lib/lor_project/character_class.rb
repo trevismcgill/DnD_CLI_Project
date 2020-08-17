@@ -1,5 +1,4 @@
-class CharacterClass
-
+class Card
     @@all = []
 
 def initialize
