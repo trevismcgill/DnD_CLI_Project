@@ -4,8 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "DnD_CLI_Project/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "lor_project"
-  spec.version       = LorProject::VERSION
+  spec.name          = "DnD_CLI_project"
+  spec.version       = DnD_CLI_Project::VERSION
   spec.authors       = ["'Trevis McGill'"]
   spec.email         = ["'trevismcgill25@gmail.com'"]
 

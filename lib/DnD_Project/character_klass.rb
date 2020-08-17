@@ -1,5 +1,5 @@
 class CharacterKlass
-attr_accessor :name, :url
+attr_accessor :_id, :index, :name, :hit_die, :proficiency_choices, :proficiencies, :saving_throws, :starting_equipment, :class_levels, :subclasses, :url
 
 @@all = []
 
