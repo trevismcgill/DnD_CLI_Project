@@ -1,0 +1,16 @@
+Deck builder usiong Legends of Runeterra Api
+  allows the user to search the card database
+  Can add cards into a deck (array of card instances)
+
+
+  -CliController
+    interacts with the user (takes input)
+
+  -API
+  fetches data from the LOR api to be used by the Card class
+
+  -Deck
+    has many cards
+
+  -Card
+    -can have many decks
