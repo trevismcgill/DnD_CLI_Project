@@ -15,12 +15,12 @@ dnd_klasses_array = dnd_klasses_hash[:results]
 
 dnd_klasses_instances = dnd_klasses_array.collect do |klass|
 
-  response = RestClient.get("#{base_url}#{klass[:url]}")
-  dnd_klass_specific_hash = JSON.parse(response.body, symbolize_names:true)
-  CharacterKlass.new(dnd_klass_specific_hash)
+response = RestClient.get("#{base_url}#{klass[:url]}")
+dnd_klass_specific_hash = JSON.parse(response.body, symbolize_names:true)
+CharacterKlass.new(dnd_klass_specific_hash)
 
 end
-  binding.pry
+  # binding.pry
 
 
 
