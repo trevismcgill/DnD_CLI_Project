@@ -12,7 +12,6 @@ class CliController
       puts "Welcome to the Dungeons & Dragons 5th Edition Class Database!"
       puts "Would you like to know about Classes or Spells?"
       puts "You may also type 'exit' to terminate program."
-      binding.pry
     user_input = gets.strip
     if user_input.downcase == "classes"
       select_klass
@@ -38,7 +37,7 @@ def select_klass
     puts "Saving Throws - #{result.saving_throws.collect {|hash| hash[:name]}.join(" & ")}"
     puts "Proficiencies - #{result.proficiencies.collect {|hash| hash[:name]}.join(", ")}"
     # puts "Starting Equipment - #{result.starting_equipment}"
-    puts "Spellcasting - #{result.spellcasting}" if result.spellcasting != nil
+    puts "Spell List- #{result.spells.join(", ")}" if result.spells != []
   end
 
 def list_classes
