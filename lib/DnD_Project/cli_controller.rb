@@ -11,7 +11,7 @@ class CliController
       puts "---------------------------------------"
       puts "Welcome to the Dungeons & Dragons 5th Edition Class Database!"
       puts "Would you like to know about Classes or Spells?"
-      puts "You may also type exit to terminate program."
+      puts "You may also type 'exit' to terminate program."
     user_input = gets.strip
     if user_input.downcase == "classes"
       select_klass
@@ -31,12 +31,12 @@ def select_klass
     end
     puts "---------------------------------------"
     puts "Class - #{result.name}"
-    puts "Class Levels - #{result.class_levels}"
-    puts "Subclasses - #{result.subclasses.collect {|hash| hash[:name]}.join(" & ")}"
+    # puts "Class Levels - #{result.class_levels}"
+    # puts "Subclasses - #{result.subclasses.collect {|hash| hash[:name]}.join(" & ")}"
     puts "Hit Die - 1d#{result.hit_die}"
     puts "Saving Throws - #{result.saving_throws.collect {|hash| hash[:name]}.join(" & ")}"
     puts "Proficiencies - #{result.proficiencies.collect {|hash| hash[:name]}.join(", ")}"
-    puts "Starting Equipment - #{result.starting_equipment}"
+    # puts "Starting Equipment - #{result.starting_equipment}"
     puts "Spellcasting - #{result.spellcasting}" if result.spellcasting != nil
   end
 
@@ -50,18 +50,19 @@ def select_spells
   list_spells
   user_input = gets.strip
   result = Spells.all.detect do |spell|
+    # binding.pry
     spell.name.downcase == user_input.downcase
   end
   puts "---------------------------------------"
   puts "Spell - #{result.name}"
-  puts "Casting Time - #{result.casting_time}"
+  puts "Casting Time - #{result.casting_time}" if result.casting_time != nil
   puts "Available to - #{result.classes.collect {|klass| klass[:name]}.join(", ")}"
-  puts "Casting Components - #{result.components.join}"
-  puts "Damage Type - #{result.damage[:damage_type][:name]}"
+  puts "Casting Components - #{result.components.join}" if result.components != nil
+  puts "Damage Type - #{result.damage[:damage_type][:name]}" if result.damage != nil
   puts "Description - #{result.desc.join}"
-  puts "Duration - #{result.duration}"
-  puts "Material Components - #{result.material}"
-  puts "Range - #{result.range}"
+  puts "Duration - #{result.duration}" if result.duration != nil
+  puts "Material Components - #{result.material}" if result.material != nil
+  puts "Range - #{result.range}" if result.range != nil
   puts "School of Magic - #{result.school[:name]}"
   puts "Ritual" if result.ritual == true
 end
