@@ -17,5 +17,6 @@ end
 
 def add_spell(spell)
   @spelss << spell
+end
 
 end
