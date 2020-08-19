@@ -3,12 +3,15 @@ require 'pry'
 class CliController
 
   def start
-    puts "Welcome to the Dungeons & Dragons 5th Edition Class Database!"
-    puts "Would you like to know about Classes or Spells?"
+    puts "Please wait. Loading database..."
     API.create_new_character_klass
     API.create_spell_library
     user_input = ""
     while user_input.downcase != "exit"
+      puts "---------------------------------------"
+      puts "Welcome to the Dungeons & Dragons 5th Edition Class Database!"
+      puts "Would you like to know about Classes or Spells?"
+      puts "You may also type exit to terminate program."
     user_input = gets.strip
     if user_input.downcase == "classes"
       select_klass
@@ -53,9 +56,9 @@ def select_spells
   puts "Spell - #{result.name}"
   puts "Casting Time - #{result.casting_time}"
   puts "Available to - #{result.classes.collect {|klass| klass[:name]}.join(", ")}"
-  puts "Casting Components - #{result.components}.join("")"
+  puts "Casting Components - #{result.components.join}"
   puts "Damage Type - #{result.damage[:damage_type][:name]}"
-  puts "Description - #{result.desc}.join("")"
+  puts "Description - #{result.desc.join}"
   puts "Duration - #{result.duration}"
   puts "Material Components - #{result.material}"
   puts "Range - #{result.range}"
