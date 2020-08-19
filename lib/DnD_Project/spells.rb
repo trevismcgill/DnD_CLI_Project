@@ -9,10 +9,19 @@ attr_accessor :_id, :index, :name, :desc, :higher_level, :range, :components, :m
 def initialize(attributes)
   attributes.each {|key, value| self.send(("#{key}="), value)}
   @@all << self
+  assign_to_klass
 end
 
 def self.all
   @@all
+end
+
+def assign_to_klass
+  CharacterKlass.all.each do |klass_inst|
+    if klass_inst.name == self.classes.each {|klass| klass[:name]}
+      klass_inst.spells << self.name
+    end
+  end
 end
 
 end
