@@ -12,6 +12,7 @@ class CliController
       puts "Welcome to the Dungeons & Dragons 5th Edition Class Database!"
       puts "Would you like to know about Classes or Spells?"
       puts "You may also type 'exit' to terminate program."
+      binding.pry
     user_input = gets.strip
     if user_input.downcase == "classes"
       select_klass

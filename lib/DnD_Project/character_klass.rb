@@ -1,7 +1,7 @@
 require 'pry'
 
 class CharacterKlass
-attr_accessor :_id, :index, :name, :hit_die, :proficiency_choices, :proficiencies, :saving_throws, :spellcasting, :starting_equipment, :class_levels, :subclasses, :url
+attr_accessor :_id, :index, :name, :hit_die, :proficiency_choices, :proficiencies, :saving_throws, :spellcasting, :starting_equipment, :class_levels, :subclasses, :url, :spells
 
 @@all = []
 
@@ -16,7 +16,7 @@ def self.all
 end
 
 def add_spell(spell)
-  @spelss << spell
+  @spells << spell
 end
 
 end
