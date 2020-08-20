@@ -33,23 +33,10 @@ spells_hash = JSON.parse(response.body, symbolize_names:true)
 spells_array = spells_hash[:results]
 
 spell_instances = spells_array.collect do |spell|
-  response = RestClient.get("#{@@base_url}#{spell[:url]}")
-  individual_spell_hash = JSON.parse(response.body, symbolize_names:true)
-  Spells.new(individual_spell_hash)
+response = RestClient.get("#{@@base_url}#{spell[:url]}")
+individual_spell_hash = JSON.parse(response.body, symbolize_names:true)
+Spells.new(individual_spell_hash)
 end
 end
-  # binding.pry
-
-
-
-# def self.json_to_csv
-# csv_string = CSV.generate do |csv|
-#   JSON.parse(File.open("set1-en_us.json").read).each do |hash|
-#     csv << hash.values
-#     binding.pry
-#     end
-#   end
-#   csv_string
-# end
 
 end
