@@ -21,8 +21,8 @@ response = RestClient.get("#{@@base_url}#{klass[:url]}")
 dnd_klass_specific_hash = JSON.parse(response.body, symbolize_names:true)
 CharacterKlass.new(dnd_klass_specific_hash)
 
-response = RestClient.get("#{@@base_url}#{dnd_klass_specific_hash[:subclasses][0][:url]}")
-subklass_hash = JSON.parse(response.body, symbolize_names:true)
+# response = RestClient.get("#{@@base_url}#{dnd_klass_specific_hash[:subclasses][0][:url]}")
+# subklass_hash = JSON.parse(response.body, symbolize_names:true)
 end
 end
 

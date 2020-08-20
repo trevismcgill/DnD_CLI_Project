@@ -1,16 +1,17 @@
-Deck builder usiong Legends of Runeterra Api
-  allows the user to search the card database
-  Can add cards into a deck (array of card instances)
+Dungeons and Dragons API
+Allows the user to search by Character Class and/or Spell List
 
 
   -CliController
     interacts with the user (takes input)
 
   -API
-  fetches data from the LOR api to be used by the Card class
+  fetches data from the DnD api and creates the database of information
 
-  -Deck
-    has many cards
+  -CharacterKlass
+    Contains atrributes about a particular instance of CharacterKlass
+    has many spell names
 
-  -Card
-    -can have many decks
+-Spells
+  Contains attributes about a particular instance of Spells
+    -can be assigned to multiple CharacterKlasses
