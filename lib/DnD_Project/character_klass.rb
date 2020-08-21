@@ -15,8 +15,4 @@ def self.all
   @@all
 end
 
-# def add_spell(spell)
-#   @spells << spell
-# end
-
 end

@@ -5,7 +5,6 @@ class CliController
   def start
     puts "Please wait. Loading database..."
     API.create_new_character_klass
-    # binding.pry
     API.create_spell_library
     user_input = ""
     while user_input.downcase != "exit"
@@ -38,7 +37,6 @@ def select_klass
       puts "---------------------------------------"
       puts "Class - #{result.name}"
     # puts "Class Levels - #{result.class_levels}"
-    # puts "Subclasses - #{result.subclasses.collect {|hash| hash[:name]}.join(" & ")}"
       puts "Hit Die - 1d#{result.hit_die}"
       puts "Saving Throws - #{result.saving_throws.collect {|hash| hash[:name]}.join(" & ")}"
       puts "Proficiencies - #{result.proficiencies.collect {|hash| hash[:name]}.join(", ")}"
@@ -65,7 +63,6 @@ def select_spells
     user_input = gets.strip
     if user_input.downcase != "exit"
       result = Spells.all.detect do |spell|
-    # binding.pry
         spell.name.downcase == user_input.downcase
       end
       puts "---------------------------------------"
