@@ -19,7 +19,7 @@ end
 def assign_to_klass
   CharacterKlass.all.each do |klass_inst|
     if self.classes.any? {|klass| klass[:name] == klass_inst.name}
-      klass_inst.spells << self.name
+      klass_inst.spells << self
     end
   end
 end

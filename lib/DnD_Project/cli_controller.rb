@@ -12,10 +12,10 @@ class CliController
       puts "Welcome to the Dungeons & Dragons 5th Edition Class Database!"
       puts "Would you like to know about Classes or Spells?"
       puts "You may also type 'exit' to terminate program."
-    user_input = gets.strip
-    if user_input.downcase == "classes"
+    user_input = gets.downcase.strip
+    if user_input == "classes"
       select_klass
-    elsif user_input.downcase == "spells"
+    elsif user_input == "spells"
       format_list_of_spells
     else
     end
@@ -63,15 +63,20 @@ def format_list_of_spells
     puts "To see all spells: Type 'all'"
     puts "Type 'exit' to return to the previous menu."
     user_input = gets.downcase.strip
-    if CharacterKlass.all.any? {|klass| klass.index.include?(user_input)}
+    if CharacterKlass.all.any? {|klass| klass.index == user_input}
+      binding.pry
       list_spells_by_klass(user_input)
     elsif user_input.match?(/\d/) && user_input.to_i.between?(0, 9)
-      list_spells_by_level(user_input)
-    elsif Spells.all.any? {|klass| klass.school.include?(user_input)}
+      binding.pry
+      list_spells_by_level(user_input.to_i)
+    elsif Spells.all.any? {|spell| spell.school[:name].downcase == user_input}
+        binding.pry
       list_spells_by_school(user_input)
-    elsif "all"
+    elsif user_input == "all"
+      binding.pry
       list_spells_all
-    elsif "exit"
+    elsif user_input == "exit"
+      binding.pry
       break
     else
       puts "Sorry, I don't recognize that command."
@@ -80,8 +85,10 @@ def format_list_of_spells
 end
 
 def select_spells
+  puts "---------------------------------------"
   puts "Please input which spell you would like information for:"
-    user_input = gets.downcase.strip
+  puts "Or type 'exit' to go back."
+  user_input = gets.downcase.strip
     if user_input != "exit"
       result = Spells.all.detect do |spell|
         spell.name.downcase == user_input
@@ -99,33 +106,41 @@ def select_spells
       puts "School of Magic - #{result.school[:name]}"
       puts "Ritual" if result.ritual == true
     else
-  end
+    end
 end
 
 def list_spells_all
   spell_list = Spells.all.collect {|spell| spell.name}.join(", ")
+  puts "All Spells"
   puts spell_list
+  select_spells
 end
 
 def list_spells_by_klass(input_klass)
   spell_list = Spells.all.select do |spell|
     spell.classes.any? {|hash| hash[:name].downcase == input_klass.downcase}
   end
- puts spell_list
+ puts "#{input_klass.capitalize} Spells"
+ puts spell_list.collect {|spell| spell.name}.join(", ")
+ select_spells
 end
 
 def list_spells_by_level(input_level)
   spell_list = Spells.all.select do |spell|
     spell.level == input_level
   end
-  puts spell_list
+  puts "Level #{input_level} Spells"
+  puts spell_list.collect {|spell| spell.name}.join(", ")
+  select_spells
 end
 
 def list_spells_by_school(input_school)
   spell_list = Spells.all.select do |spell|
-    spell.school.downcase == input_school.downcase
+    spell.school[:name].downcase == input_school.downcase
   end
- puts spell_list
+ puts "Spells from the School of #{input_school.capitalize}"
+ puts spell_list.collect {|spell| spell.name}.join(", ")
+ select_spells
 end
 
 end
