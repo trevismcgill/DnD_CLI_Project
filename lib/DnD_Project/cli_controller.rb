@@ -29,8 +29,8 @@ def select_klass
   puts "Please input which Character class you would like information for:"
   puts "You may also type 'exit' to return to the previous menu."
   list_classes
-    user_input = gets.strip
-    if user_input.downcase != "exit"
+    user_input = gets.downcase.strip
+    if CharacterKlass.all.any? {|klass| klass.index == user_input}
       result = CharacterKlass.all.detect do |klass|
         klass.index.include?(user_input.downcase)
       end
@@ -42,7 +42,10 @@ def select_klass
       puts "Proficiencies - #{result.proficiencies.collect {|hash| hash[:name]}.join(", ")}"
     # puts "Starting Equipment - #{result.starting_equipment}"
       puts "Spell List- #{result.spells.collect {|spell_inst| spell_inst.name}.join(", ")}" if result.spells != []
+    elsif user_input == "exit"
+      break
     else
+      puts "Sorry, I don't recognize that command."
     end
   end
 end
@@ -64,19 +67,14 @@ def format_list_of_spells
     puts "Type 'exit' to return to the previous menu."
     user_input = gets.downcase.strip
     if CharacterKlass.all.any? {|klass| klass.index == user_input}
-      binding.pry
       list_spells_by_klass(user_input)
     elsif user_input.match?(/\d/) && user_input.to_i.between?(0, 9)
-      binding.pry
       list_spells_by_level(user_input.to_i)
     elsif Spells.all.any? {|spell| spell.school[:name].downcase == user_input}
-        binding.pry
       list_spells_by_school(user_input)
     elsif user_input == "all"
-      binding.pry
       list_spells_all
     elsif user_input == "exit"
-      binding.pry
       break
     else
       puts "Sorry, I don't recognize that command."
@@ -85,11 +83,13 @@ def format_list_of_spells
 end
 
 def select_spells
+  user_input = ""
+  while user_input.downcase != "exit"
   puts "---------------------------------------"
   puts "Please input which spell you would like information for:"
   puts "Or type 'exit' to go back."
   user_input = gets.downcase.strip
-    if user_input != "exit"
+    if Spells.all.any? {|spell| spell.name.downcase == user_input}
       result = Spells.all.detect do |spell|
         spell.name.downcase == user_input
       end
@@ -105,8 +105,12 @@ def select_spells
       puts "Range - #{result.range}" if result.range != nil
       puts "School of Magic - #{result.school[:name]}"
       puts "Ritual" if result.ritual == true
+    elsif user_input == "exit"
+      break
     else
+      puts "Sorry, I don't recognize that command."
     end
+  end
 end
 
 def list_spells_all

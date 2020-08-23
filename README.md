@@ -17,7 +17,7 @@ Or install it yourself as:
 
 ## Usage
 
-This application allows you to gather information about the classes and spells of Dungeons and Dragons 5e.
+This application allows you to gather information about the classes and spells of Dungeons and Dragons 5th Edition (5e).
 
 ## Development
 
