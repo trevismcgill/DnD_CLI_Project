@@ -36,11 +36,9 @@ def select_klass
       end
       puts "---------------------------------------"
       puts "Class - #{result.name}"
-    # puts "Class Levels - #{result.class_levels}"
       puts "Hit Die - 1d#{result.hit_die}"
       puts "Saving Throws - #{result.saving_throws.collect {|hash| hash[:name]}.join(" & ")}"
       puts "Proficiencies - #{result.proficiencies.collect {|hash| hash[:name]}.join(", ")}"
-    # puts "Starting Equipment - #{result.starting_equipment}"
       puts "Spell List- #{result.spells.collect {|spell_inst| spell_inst.name}.join(", ")}" if result.spells != []
     elsif user_input == "exit"
       break
@@ -95,6 +93,7 @@ def select_spells
       end
       puts "---------------------------------------"
       puts "Spell - #{result.name}"
+      puts "Spell Level - #{result.level}"
       puts "Casting Time - #{result.casting_time}" if result.casting_time != nil
       puts "Available to - #{result.classes.collect {|klass| klass[:name]}.join(", ")}"
       puts "Casting Components - #{result.components.join}" if result.components != nil
