@@ -14,7 +14,7 @@ response = RestClient.get("#{@@base_url}#{klass_url}")
 dnd_klasses_hash = JSON.parse(response.body, symbolize_names:true)
 dnd_klasses_array = dnd_klasses_hash[:results]
 
-dnd_klasses_instances = dnd_klasses_array.collect do |klass|
+dnd_klasses_array.collect do |klass|
   response = RestClient.get("#{@@base_url}#{klass[:url]}")
   dnd_klass_specific_hash = JSON.parse(response.body, symbolize_names:true)
   CharacterKlass.new(dnd_klass_specific_hash)
@@ -27,7 +27,7 @@ response = RestClient.get("#{@@base_url}#{spell_url}")
 spells_hash = JSON.parse(response.body, symbolize_names:true)
 spells_array = spells_hash[:results]
 
-spell_instances = spells_array.collect do |spell|
+spells_array.collect do |spell|
   response = RestClient.get("#{@@base_url}#{spell[:url]}")
   individual_spell_hash = JSON.parse(response.body, symbolize_names:true)
   Spells.new(individual_spell_hash)

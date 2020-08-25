@@ -113,7 +113,7 @@ def select_spells
 end
 
 def list_spells_all
-  spell_list = Spells.all.collect {|spell| spell.name}.join(", ")
+  spell_list = Spells.spells_sorted_by_level.collect {|spell| "#{spell.name} - #{spell.level}"}.join(", ")
   puts "All Spells"
   puts spell_list
   select_spells

@@ -24,4 +24,7 @@ def assign_to_klass
   end
 end
 
+def self.spells_sorted_by_level
+  self.all.sort_by {|spell| spell.level}
+end
 end
